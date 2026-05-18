@@ -20,11 +20,11 @@
       --mist: #A8C4B0;
       --border: rgba(27,67,50,0.12);
     }
-    html, body { height: 100%; overflow: hidden; }
-    body { background: var(--cream); color: var(--charcoal); font-family: 'Inter', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--charcoal); font-family: 'Inter', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; min-height: 100vh; }
 
     /* NAV */
-    .nav { padding: 18px 48px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .nav { position: sticky; top: 0; z-index: 100; padding: 18px 48px; display: flex; justify-content: space-between; align-items: center; background: rgba(250,247,242,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
     .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; color: var(--forest); text-decoration: none; letter-spacing: 0.02em; }
     .nav-logo span { color: var(--earth); font-style: italic; }
     .nav-right { display: flex; align-items: center; gap: 28px; }
@@ -34,61 +34,71 @@
     .nav-cta:hover { background: var(--forest); color: var(--cream); }
 
     /* MAIN LAYOUT */
-    .main { flex: 1; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+    .main { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 57px); }
 
     /* LEFT — PROBLEM */
-    .left { padding: 48px 48px 48px 48px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
-    .col-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--earth); margin-bottom: 20px; }
-    .col-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3vw, 42px); font-weight: 500; color: var(--forest); line-height: 1.1; margin-bottom: 28px; }
+    .left { padding: 48px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
+    .col-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--earth); margin-bottom: 16px; }
+    .col-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 3vw, 44px); font-weight: 500; color: var(--forest); line-height: 1.1; margin-bottom: 28px; }
     .problems-list { display: flex; flex-direction: column; gap: 8px; }
-    .problem-item { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: #fff; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; transition: all 0.2s; cursor: pointer; }
+    .problem-item { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: #fff; border: 1px solid var(--border); border-radius: 12px; text-decoration: none; transition: all 0.2s; }
     .problem-item:hover { border-color: var(--forest); background: var(--cream); transform: translateX(4px); }
     .problem-left { display: flex; align-items: center; gap: 14px; }
-    .problem-stat { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--gold); min-width: 60px; }
+    .problem-stat { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--gold); min-width: 64px; }
     .problem-text { display: flex; flex-direction: column; gap: 2px; }
     .problem-cat { font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--earth); }
     .problem-label { font-size: 13px; color: var(--charcoal); font-weight: 400; line-height: 1.3; }
-    .problem-arrow { font-size: 14px; color: var(--border); transition: color 0.2s; }
+    .problem-arrow { font-size: 13px; color: #ccc; transition: color 0.2s; white-space: nowrap; font-weight: 400; }
     .problem-item:hover .problem-arrow { color: var(--forest); }
 
     /* RIGHT — SOLUTION + CTA */
-    .right { padding: 48px; display: flex; flex-direction: column; justify-content: center; gap: 32px; overflow: hidden; }
+    .right { padding: 48px; display: flex; flex-direction: column; justify-content: center; gap: 24px; }
 
     /* SOLUTION */
     .solution-block { background: var(--forest); border-radius: 20px; padding: 36px 40px; }
-    .solution-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
-    .solution-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 2.5vw, 36px); font-weight: 500; color: var(--cream); line-height: 1.15; margin-bottom: 16px; }
+    .solution-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .solution-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 2.5vw, 38px); font-weight: 500; color: var(--cream); line-height: 1.1; margin-bottom: 14px; }
     .solution-headline em { color: var(--gold); font-style: italic; }
-    .solution-body { font-size: 14px; font-weight: 300; color: var(--mist); line-height: 1.75; margin-bottom: 20px; }
-    .solution-mandate { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold); font-style: italic; margin-bottom: 20px; }
+    .solution-body { font-size: 14px; font-weight: 300; color: var(--mist); line-height: 1.75; margin-bottom: 16px; }
+    .solution-mandate { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold); font-style: italic; margin-bottom: 18px; }
     .solution-links { display: flex; gap: 20px; flex-wrap: wrap; }
-    .solution-link { font-size: 12px; color: var(--mist); text-decoration: none; border-bottom: 1px solid rgba(168,196,176,0.3); padding-bottom: 2px; transition: all 0.2s; letter-spacing: 0.02em; }
+    .solution-link { font-size: 12px; color: var(--mist); text-decoration: none; border-bottom: 1px solid rgba(168,196,176,0.3); padding-bottom: 2px; transition: all 0.2s; }
     .solution-link:hover { color: var(--cream); border-color: var(--cream); }
 
     /* CTA */
     .cta-block { border: 1.5px solid var(--border); border-radius: 20px; padding: 32px 40px; }
-    .cta-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--earth); margin-bottom: 10px; }
-    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2vw, 28px); font-weight: 500; color: var(--forest); line-height: 1.2; margin-bottom: 10px; }
-    .cta-body { font-size: 13px; color: var(--slate); line-height: 1.6; margin-bottom: 20px; }
-    .cta-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .cta-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--earth); margin-bottom: 8px; }
+    .cta-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 2vw, 28px); font-weight: 500; color: var(--forest); line-height: 1.2; margin-bottom: 8px; }
+    .cta-body { font-size: 13px; color: var(--slate); line-height: 1.6; margin-bottom: 18px; }
     .btn-primary { display: inline-block; background: var(--forest); color: var(--cream); padding: 13px 28px; border-radius: 100px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; text-decoration: none; transition: all 0.2s; box-shadow: 0 4px 16px rgba(27,67,50,0.25); border: none; cursor: pointer; }
     .btn-primary:hover { background: #0f2a1e; transform: translateY(-1px); }
-    .email-row { display: flex; gap: 8px; width: 100%; }
-    .email-input { flex: 1; padding: 13px 18px; border: 1.5px solid var(--border); border-radius: 100px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--charcoal); background: var(--cream); outline: none; transition: border-color 0.2s; }
+    .cta-divider { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+    .cta-sub { font-size: 12px; color: var(--slate); margin-bottom: 10px; font-weight: 400; }
+    .email-row { display: flex; gap: 8px; }
+    .email-input { flex: 1; padding: 12px 18px; border: 1.5px solid var(--border); border-radius: 100px; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--charcoal); background: var(--cream); outline: none; transition: border-color 0.2s; }
     .email-input:focus { border-color: var(--forest); }
     .cta-privacy { font-size: 11px; color: #8B9EA8; margin-top: 8px; }
     .cta-success { font-size: 13px; color: var(--forest); font-weight: 500; margin-top: 8px; display: none; }
 
+    /* FOOTER */
+    .footer { border-top: 1px solid var(--border); padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 500; color: var(--forest); }
+    .footer-logo span { color: var(--earth); font-style: italic; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-link { font-size: 12px; color: var(--slate); text-decoration: none; }
+    .footer-link:hover { color: var(--forest); }
+    .footer-copy { font-size: 11px; color: #8B9EA8; }
+
     /* MOBILE */
     @media (max-width: 768px) {
-      html, body { height: auto; overflow: auto; }
       .nav { padding: 16px 20px; }
       .nav-link { display: none; }
-      .main { grid-template-columns: 1fr; overflow: visible; }
-      .left { padding: 36px 20px; border-right: none; border-bottom: 1px solid var(--border); }
-      .right { padding: 36px 20px; gap: 20px; }
+      .main { grid-template-columns: 1fr; min-height: auto; }
+      .left { padding: 36px 20px; border-right: none; border-bottom: 1px solid var(--border); justify-content: flex-start; }
+      .right { padding: 36px 20px; justify-content: flex-start; gap: 20px; }
       .solution-block { padding: 28px 24px; }
       .cta-block { padding: 28px 24px; }
+      .footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
     }
   </style>
 </head>
@@ -118,7 +128,7 @@
             <span class="problem-label">Water consumed by one data center in 2024</span>
           </div>
         </div>
-        <span class="problem-arrow">→</span>
+        <span class="problem-arrow">Learn more →</span>
       </a>
       <a href="/problem-social.html" class="problem-item">
         <div class="problem-left">
@@ -128,7 +138,7 @@
             <span class="problem-label">Of enterprises cutting entry-level hiring due to AI</span>
           </div>
         </div>
-        <span class="problem-arrow">→</span>
+        <span class="problem-arrow">Learn more →</span>
       </a>
       <a href="/problem-cognitive.html" class="problem-item">
         <div class="problem-left">
@@ -138,7 +148,7 @@
             <span class="problem-label">Users growing more dependent, not more capable</span>
           </div>
         </div>
-        <span class="problem-arrow">→</span>
+        <span class="problem-arrow">Learn more →</span>
       </a>
       <a href="/problem-democratic.html" class="problem-item">
         <div class="problem-left">
@@ -148,7 +158,7 @@
             <span class="problem-label">Mandate for decisions reshaping civilization</span>
           </div>
         </div>
-        <span class="problem-arrow">→</span>
+        <span class="problem-arrow">Learn more →</span>
       </a>
       <a href="/problem-consciousness.html" class="problem-item">
         <div class="problem-left">
@@ -158,7 +168,7 @@
             <span class="problem-label">Probability current AI models are conscious — per Anthropic</span>
           </div>
         </div>
-        <span class="problem-arrow">→</span>
+        <span class="problem-arrow">Learn more →</span>
       </a>
     </div>
   </div>
@@ -174,6 +184,7 @@
       <div class="solution-links">
         <a href="/doctrine.html" class="solution-link">The Companion Doctrine →</a>
         <a href="/certification.html" class="solution-link">Companion Certification →</a>
+        <a href="/team.html" class="solution-link">Who We Are →</a>
       </div>
     </div>
 
@@ -181,22 +192,31 @@
       <p class="cta-eyebrow">First Product — Live Now</p>
       <h3 class="cta-headline">Prompt Prophet. Regenerative AI, proven.</h3>
       <p class="cta-body">The more you use it, the sharper your own thinking becomes. That's what regenerative looks like in practice.</p>
-      <div class="cta-actions">
-        <a href="https://prompt-prophet.vercel.app" class="btn-primary">Try It Free →</a>
+      <a href="https://prompt-prophet.vercel.app" class="btn-primary">Try It Free →</a>
+      <hr class="cta-divider" />
+      <p class="cta-sub">Join the movement — get updates as we build.</p>
+      <div class="email-row">
+        <input type="email" class="email-input" placeholder="your@email.com" id="cta-email" />
+        <button class="btn-primary" onclick="gcSubmit('cta-email','cta-success','Good Companion Movement')">Join →</button>
       </div>
-      <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border);">
-        <p style="font-size: 12px; color: var(--slate); margin-bottom: 10px; font-weight: 400;">Join the movement — get updates as we build.</p>
-        <div class="email-row">
-          <input type="email" class="email-input" placeholder="your@email.com" id="cta-email" />
-          <button class="btn-primary" onclick="gcSubmit('cta-email','cta-success','Good Companion Movement')">Join →</button>
-        </div>
-        <p class="cta-privacy">No spam. Updates on the movement only.</p>
-        <p class="cta-success" id="cta-success">✓ You're in. Welcome to the movement.</p>
-      </div>
+      <p class="cta-privacy">No spam. Updates on the movement only.</p>
+      <p class="cta-success" id="cta-success">✓ You're in. Welcome to the movement.</p>
     </div>
 
   </div>
 </div>
+
+<footer class="footer">
+  <p class="footer-logo">Good <span>Companion</span></p>
+  <div class="footer-links">
+    <a href="https://prompt-prophet.vercel.app" class="footer-link">Prompt Prophet</a>
+    <a href="/doctrine.html" class="footer-link">The Doctrine</a>
+    <a href="/certification.html" class="footer-link">Certification</a>
+    <a href="/team.html" class="footer-link">Team</a>
+    <a href="https://instagram.com/goodcompanion.ai" class="footer-link">Instagram</a>
+  </div>
+  <p class="footer-copy">© 2026 Good Companion Inc. — Regenerative AI. The first of its kind.</p>
+</footer>
 
 <script>
   async function gcSubmit(inputId, successId, tag) {
@@ -216,7 +236,8 @@
       });
     } catch(e) {}
     input.style.display = 'none';
-    input.closest('.email-row') ? input.closest('.email-row').querySelector('button').style.display = 'none' : null;
+    const row = input.closest('.email-row');
+    if (row) row.querySelector('button').style.display = 'none';
     success.style.display = 'block';
   }
 </script>
