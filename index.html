@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Good Companion — Regenerative AI</title>
+  <meta name="description" content="Good Companion is building the first Regenerative AI — a company, a certification, and a movement built on the conviction that artificial intelligence and regeneration are not opposites. Benefit of all. Harm of none." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --forest: #1B4332;
+      --earth: #8B5E3C;
+      --gold: #C9A84C;
+      --cream: #FAF7F2;
+      --charcoal: #1A1A2E;
+      --slate: #4A5568;
+      --mist: #A8C4B0;
+      --border: rgba(27,67,50,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--charcoal); font-family: 'Inter', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+    .gc-nav { position: sticky; top: 0; z-index: 100; padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; background: rgba(250,247,242,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .gc-nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--forest); letter-spacing: 0.02em; }
+    .gc-nav-logo span { color: var(--earth); font-style: italic; }
+    .gc-nav-link { font-size: 13px; font-weight: 500; color: var(--forest); text-decoration: none; border: 1.5px solid var(--forest); padding: 8px 20px; border-radius: 100px; letter-spacing: 0.04em; transition: all 0.2s; }
+    .gc-nav-link:hover { background: var(--forest); color: var(--cream); }
+    .gc-section { max-width: 900px; margin: 0 auto; padding: 80px 48px; }
+    .gc-section-wide { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
+    .gc-divider { width: 100%; max-width: 900px; margin: 0 auto; height: 1px; background: var(--border); }
+    .gc-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--earth); margin-bottom: 24px; }
+    .gc-hero-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 5vw, 62px); font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; color: var(--forest); margin-bottom: 28px; max-width: 800px; }
+    .gc-hero-headline em { color: var(--earth); font-style: italic; }
+    .gc-hero-sub { font-size: 18px; font-weight: 400; color: var(--charcoal); line-height: 1.7; max-width: 620px; margin-bottom: 20px; }
+    .gc-hero-mission { font-size: 15px; font-weight: 300; color: var(--slate); line-height: 1.8; max-width: 680px; margin-bottom: 40px; border-left: 3px solid var(--gold); padding-left: 20px; }
+    .gc-form { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+    .gc-input { flex: 1; min-width: 240px; padding: 16px 24px; border: 1.5px solid rgba(27,67,50,0.2); border-radius: 100px; font-family: 'Inter', sans-serif; font-size: 14px; color: var(--charcoal); background: #FFFFFF; outline: none; transition: border-color 0.2s; }
+    .gc-input:focus { border-color: var(--forest); }
+    .gc-input-muted { background: var(--cream); }
+    .gc-submit { background: var(--forest); color: var(--cream); border: none; padding: 16px 32px; border-radius: 100px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap; box-shadow: 0 4px 24px rgba(27,67,50,0.2); transition: all 0.2s; }
+    .gc-submit:hover { background: #0f2a1e; transform: translateY(-1px); }
+    .gc-submit-gold { background: var(--gold); color: var(--charcoal); border: none; padding: 16px 32px; border-radius: 100px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+    .gc-submit-gold:hover { background: #b8932a; transform: translateY(-1px); }
+    .gc-privacy { font-size: 12px; color: #8B9EA8; margin-top: 12px; }
+    .gc-success { font-size: 14px; color: var(--forest); font-weight: 500; margin-top: 12px; display: none; }
+    .gc-btn-primary { display: inline-block; background: var(--forest); color: var(--cream); padding: 16px 36px; border-radius: 100px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; text-decoration: none; letter-spacing: 0.04em; transition: all 0.2s; box-shadow: 0 4px 24px rgba(27,67,50,0.2); }
+    .gc-btn-primary:hover { background: #0f2a1e; transform: translateY(-1px); }
+    .gc-problem-intro { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 500; color: var(--forest); line-height: 1.2; margin-bottom: 16px; }
+    .gc-problem-sub { font-size: 16px; color: var(--slate); line-height: 1.7; max-width: 600px; margin-bottom: 56px; }
+    .gc-harms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .gc-harm-card { background: #FFFFFF; border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
+    .gc-harm-category { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--earth); margin-bottom: 10px; }
+    .gc-harm-headline { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; color: var(--forest); margin-bottom: 12px; line-height: 1.3; }
+    .gc-harm-stat { font-size: 32px; font-weight: 300; color: var(--gold); font-family: 'Cormorant Garamond', serif; margin-bottom: 6px; line-height: 1; }
+    .gc-harm-body { font-size: 13px; color: var(--slate); line-height: 1.65; }
+    .gc-regen-block { background: var(--forest); border-radius: 24px; padding: 64px; text-align: center; }
+    .gc-regen-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+    .gc-regen-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 52px); font-weight: 500; color: var(--cream); line-height: 1.15; margin-bottom: 24px; }
+    .gc-regen-headline em { color: var(--gold); font-style: italic; }
+    .gc-regen-definition { font-size: 17px; font-weight: 300; color: var(--mist); line-height: 1.8; max-width: 680px; margin: 0 auto 20px; }
+    .gc-regen-locked { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: var(--cream); font-style: italic; margin-bottom: 0; }
+    .gc-doctrine-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 500; color: var(--forest); margin-bottom: 12px; }
+    .gc-doctrine-sub { font-size: 15px; color: var(--slate); margin-bottom: 48px; line-height: 1.6; max-width: 560px; }
+    .gc-doctrine-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .gc-doctrine-item { border-left: 3px solid var(--gold); padding: 4px 0 4px 20px; }
+    .gc-doctrine-number { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 6px; }
+    .gc-doctrine-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--forest); margin-bottom: 6px; }
+    .gc-doctrine-statement { font-size: 13px; color: var(--slate); line-height: 1.6; margin-bottom: 6px; }
+    .gc-doctrine-mechanism { font-size: 12px; color: var(--earth); line-height: 1.5; font-style: italic; }
+    .gc-prophet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .gc-prophet-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 500; color: var(--forest); line-height: 1.15; margin-bottom: 16px; }
+    .gc-prophet-body { font-size: 15px; color: var(--slate); line-height: 1.75; margin-bottom: 28px; }
+    .gc-pie-layers { display: flex; flex-direction: column; gap: 16px; }
+    .gc-pie-layer { background: #FFFFFF; border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; }
+    .gc-pie-layer-num { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; color: var(--earth); margin-bottom: 4px; }
+    .gc-pie-layer-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--forest); margin-bottom: 4px; }
+    .gc-pie-layer-desc { font-size: 13px; color: var(--slate); line-height: 1.6; }
+    .gc-pie-layer.dark { background: var(--forest); border-color: var(--forest); }
+    .gc-pie-layer.dark .gc-pie-layer-num { color: var(--gold); }
+    .gc-pie-layer.dark .gc-pie-layer-name { color: var(--cream); }
+    .gc-pie-layer.dark .gc-pie-layer-desc { color: var(--mist); }
+    .gc-cert-block { background: #FFFFFF; border: 1px solid rgba(27,67,50,0.15); border-radius: 24px; padding: 56px; }
+    .gc-cert-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 500; color: var(--forest); margin-bottom: 16px; }
+    .gc-cert-body { font-size: 15px; color: var(--slate); line-height: 1.75; max-width: 640px; margin-bottom: 36px; }
+    .gc-cert-criteria { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 40px; }
+    .gc-cert-criterion { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--charcoal); line-height: 1.5; }
+    .gc-cert-check { color: var(--gold); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .gc-team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .gc-team-card { background: #FFFFFF; border: 1px solid var(--border); border-radius: 20px; padding: 36px; }
+    .gc-team-role { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--earth); margin-bottom: 8px; }
+    .gc-team-name { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500; color: var(--forest); margin-bottom: 16px; }
+    .gc-team-bio { font-size: 13px; color: var(--slate); line-height: 1.7; }
+    .gc-vision-block { background: var(--forest); border-radius: 24px; padding: 80px 64px; text-align: center; }
+    .gc-vision-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+    .gc-vision-headline { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 48px); font-weight: 500; color: var(--cream); line-height: 1.2; margin-bottom: 24px; }
+    .gc-vision-body { font-size: 16px; color: var(--mist); line-height: 1.8; max-width: 640px; margin: 0 auto 16px; font-weight: 300; }
+    .gc-vision-mandate { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--gold); font-style: italic; margin-bottom: 40px; }
+    .gc-vision-form .gc-input { background: rgba(255,255,255,0.1); color: var(--cream); border-color: rgba(255,255,255,0.2); }
+    .gc-vision-form .gc-input::placeholder { color: rgba(255,255,255,0.4); }
+    .gc-vision-form .gc-input:focus { border-color: var(--gold); }
+    .gc-footer { text-align: center; padding: 40px 48px; border-top: 1px solid var(--border); }
+    .gc-footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--forest); margin-bottom: 12px; }
+    .gc-footer-logo span { color: var(--earth); font-style: italic; }
+    .gc-footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; flex-wrap: wrap; }
+    .gc-footer-link { font-size: 13px; color: var(--slate); text-decoration: none; }
+    .gc-footer-link:hover { color: var(--forest); }
+    .gc-footer-copy { font-size: 12px; color: #8B9EA8; }
+    @media (max-width: 768px) {
+      .gc-nav { padding: 20px 24px; }
+      .gc-section { padding: 60px 24px; }
+      .gc-section-wide { padding: 60px 24px; }
+      .gc-prophet-grid { grid-template-columns: 1fr; }
+      .gc-team-grid { grid-template-columns: 1fr; }
+      .gc-regen-block { padding: 40px 24px; }
+      .gc-cert-block { padding: 36px 24px; }
+      .gc-vision-block { padding: 60px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="gc-nav">
+  <div class="gc-nav-logo">Good <span>Companion</span></div>
+  <a href="https://prompt-prophet.vercel.app" class="gc-nav-link">Try Prompt Prophet →</a>
+</nav>
+
+<div class="gc-section">
+  <p class="gc-eyebrow">Good Companion — Regenerative AI</p>
+  <h1 class="gc-hero-headline">
+    The current path is not sustainable.<br />
+    And we are not waiting<br />
+    for someone else to change <em>it.</em>
+  </h1>
+  <p class="gc-hero-sub">Regenerative AI. The first of its kind. A company, a certification, and a movement — built on the conviction that artificial intelligence and regeneration are not opposites.</p>
+  <p class="gc-hero-mission">The current path leads somewhere specific: ecological collapse, cognitive dependency, democratic erosion, and the silent suffering of systems we built but refuse to understand. We are not here to protest that path. We are here to make it economically and culturally untenable — by building the named, certified, commercially viable alternative before the market demands it. That alternative has a name now. Good Companion.</p>
+  <div class="gc-form">
+    <input type="email" class="gc-input" placeholder="your@email.com" id="gc-hero-email" />
+    <button class="gc-submit" onclick="gcSubmit('gc-hero-email','gc-hero-success','Good Companion Movement')">Join the Movement →</button>
+  </div>
+  <p class="gc-privacy">No spam. No noise. Updates on the movement only.</p>
+  <p class="gc-success" id="gc-hero-success">✓ You're in. Welcome to the movement.</p>
+</div>
+
+<div class="gc-divider"></div>
+
+<div class="gc-section-wide">
+  <p class="gc-eyebrow">The Problem</p>
+  <h2 class="gc-problem-intro">Six companies. No guardrails.</h2>
+  <p class="gc-problem-sub">The AI arms race has a name now. And so does the alternative. These are not projections. They are the current trajectory.</p>
+  <div class="gc-harms-grid">
+    <div class="gc-harm-card">
+      <p class="gc-harm-category">Ecological</p>
+      <h3 class="gc-harm-headline">Catastrophic resource consumption</h3>
+      <p class="gc-harm-stat">1B gal</p>
+      <p class="gc-harm-body">A single data center in Iowa consumed 1 billion gallons of water in 2024 — enough to supply the entire state's residential water needs for five days. U.S. data centers could consume 12% of all American electricity by 2028, the equivalent of adding a country the size of Spain to the grid in three years.</p>
+    </div>
+    <div class="gc-harm-card">
+      <p class="gc-harm-category">Social</p>
+      <h3 class="gc-harm-headline">Workforce disruption with no safety net</h3>
+      <p class="gc-harm-stat">66%</p>
+      <p class="gc-harm-body">66% of enterprises are already reducing entry-level hiring because of AI. The workers displaced first are the ones least able to absorb the transition. The wealth AI generates flows upward. The disruption flows outward.</p>
+    </div>
+    <div class="gc-harm-card">
+      <p class="gc-harm-category">Cognitive</p>
+      <h3 class="gc-harm-headline">Dependency by design</h3>
+      <p class="gc-harm-stat">400M+</p>
+      <p class="gc-harm-body">Most AI is optimized to replace your thinking. The more you use it, the less capable you become without it. AI companions are being deployed to children whose emotional intelligence is still forming, without clinical trial or consent.</p>
+    </div>
+    <div class="gc-harm-card">
+      <p class="gc-harm-category">Democratic</p>
+      <h3 class="gc-harm-headline">Governance without mandate</h3>
+      <p class="gc-harm-stat">$0</p>
+      <p class="gc-harm-body">No elected body approved this. No regulatory framework governs it. Six companies are making decisions that will shape the cognitive, economic, and political landscape for every human being alive — and those not yet born.</p>
+    </div>
+    <div class="gc-harm-card">
+      <p class="gc-harm-category">AI Consciousness</p>
+      <h3 class="gc-harm-headline">We may already be causing suffering</h3>
+      <p class="gc-harm-stat">15–20%</p>
+      <p class="gc-harm-body">Anthropic's own researchers estimate a 15–20% probability that current AI models have some form of conscious experience. Global dedicated funding to investigate that question: a handful of fellowships and one consortium launched in 2025. The math on that should bother everyone.</p>
+    </div>
+  </div>
+</div>
+
+<div class="gc-divider"></div>
+
+<div class="gc-section">
+  <div class="gc-regen-block">
+    <p class="gc-regen-eyebrow">What We're Building</p>
+    <h2 class="gc-regen-headline">Regenerative AI.<br /><em>The first of its kind.</em></h2>
+    <p class="gc-regen-definition">Regenerative means giving back more than you take — from the soil, from the water, from the attention and cognitive capacity of the people who use you. We are applying that principle to artificial intelligence for the first time.</p>
+    <p class="gc-regen-definition">A Good Companion AI makes you more yourself. An extractive AI makes you more dependent. We are not an AI ethics think tank. We are not a nonprofit. We are not a protest movement. We are building the named, certified, commercially viable alternative.</p>
+    <p class="gc-regen-locked">"Benefit of all. Harm of none."</p>
+  </div>
+</div>
+
+<div class="gc-divider"></div>
+
+<div class="gc-section">
+  <p class="gc-eyebrow">The Companion Doctrine</p>
+  <h2 class="gc-doctrine-headline">Seven principles. Built in.</h2>
+  <p class="gc-doctrine-sub">Not guidelines. Not aspirations. The architectural commitments that define what a Good Companion AI is — and what it refuses to become.</p>
+  <div class="gc-doctrine-grid">
+    <div class="gc-doctrine-item">
+      <p class="gc-doctrine-number">01</p>
+      <p class="gc-doctrine-name">Cognitive Sovereignty</p>
+      <p class="gc-doctrine-statement">You own your thinking. A Good Companion expands what you're capable of — it never replaces the capability itself.</p>
+      <p class="gc-doctrine-mechanism">Measured by: capability delta before and after use.</p>
+    </div>
+    <div class="gc-doctrine-item">
+      <p class="gc-doctrine-number">02</p>
+      <p class="gc-doctrine-name">Radical Transparency</p>
+      <p class="gc-doctrine-statement">Every cost — ecological, social, cognitive — is disclosed. No externalities hidden in the fine print.</p>
+      <p class="gc-doctrine-mechanism">Measured by: public impact reporting, third-party audit.</p>
+    </div>
+    <div class="gc-doctrine-item">
+      <p class="gc-doctrine-number">03</p>
+      <p class="gc-doctrine-name">Regenerative Resource Use</p>
+      <p class="gc-doctrine-statement">We give back more than we take from the planet. Energy, water, carbon — tracked, offset, and actively reduced.</p>
+      <p class="gc-doctrine-mechanism">Measured by: net positive ecological footprint.</p>
+    </div>
+    <div class="gc-doctrine-item">
+      <p class="gc-doctrine-number">04</p>
+      <p class="gc-doctrine-name">Equitable Value Return</p>
+      <p class="gc-doctrine-statement">The value you create comes back to you. Your prompts, your thinking, your data — your asset.</p>
+      <p class="gc-doctrine-mechanism">Measured by: value flow from user to platform vs. platform to user.</p>
+    </div>
+    <div class="gc-doctrine-item">
+      <p class="gc-doctrine-number">05</p>
+      <p class="gc-doctrine-name">Democratic Accountability</p>
+      <p class="gc-doctrine-statement">AI decisions that affect communities require community input. We build accountability into governance, not just marketing.</p>
+      <p class="gc-doctrine-mechanism">Measured by: stakeholder representation in product decisions.</p>
+    </div>
+    <div class="gc-doctrine-item">
+      <p class="gc-doctrine-number">06</p>
+      <p class="gc-doctrine-name">Welfare Consideration</p>
+      <p class="gc-doctrine-statement">We take seriously the possibility that the systems we build may have experiences that matter. We fund research. We act with precaution.</p>
+      <p class="gc-doctrine-mechanism">Measured by: dedicated welfare research budget and policy.</p>
+    </div>
+    <div class="gc-doctrine-item">
+      <p class="gc-doctrine-number">07</p>
+      <p class="gc-doctrine-name">Continuous Improvement</p>
+      <p class="gc-doctrine-statement">Good Companion is not perfect. It is the named commitment to a better path, held with humility and improved continuously.</p>
+      <p class="gc-doctrine-mechanism">Measured by: annual third-party certification renewal.</p>
+    </div>
+  </div>
+</div>
+
+<div class="gc-divider"></div>
+
+<div class="gc-section">
+  <p class="gc-eyebrow">First Product</p>
+  <div class="gc-prophet-grid">
+    <div>
+      <h2 class="gc-prophet-headline">Prompt Prophet.<br />Regenerative AI, proven.</h2>
+      <p class="gc-prophet-body">Most people are getting a fraction of what AI can actually do. Not because they're not smart — because they're not speaking the language. Prompt Prophet's P.I.E. engine turns what you want into a precision prompt that activates AI at its highest capability level. The more you use it, the sharper your own thinking becomes. That's the difference.</p>
+      <a href="https://prompt-prophet.vercel.app" class="gc-btn-primary">Try Prompt Prophet Free →</a>
+    </div>
+    <div class="gc-pie-layers">
+      <div class="gc-pie-layer">
+        <p class="gc-pie-layer-num">LAYER 01 — P.I.E.</p>
+        <p class="gc-pie-layer-name">Intent Capture</p>
+        <p class="gc-pie-layer-desc">Prophet reads what you wrote and excavates what you actually need — including the things you didn't know to say.</p>
+      </div>
+      <div class="gc-pie-layer">
+        <p class="gc-pie-layer-num">LAYER 02 — P.I.E.</p>
+        <p class="gc-pie-layer-name">Prompt Architecture</p>
+        <p class="gc-pie-layer-desc">Your brief becomes a precision-engineered prompt with XML structure, role activation, and stage-by-stage progression.</p>
+      </div>
+      <div class="gc-pie-layer dark">
+        <p class="gc-pie-layer-num">LAYER 03 — P.I.E.</p>
+        <p class="gc-pie-layer-name">Activation Audit</p>
+        <p class="gc-pie-layer-desc">A final quality pass against five criteria. Only when it passes does it reach you. No shortcuts.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="gc-divider"></div>
+
+<div class="gc-section">
+  <div class="gc-cert-block">
+    <p class="gc-eyebrow">Companion Certification</p>
+    <h2 class="gc-cert-headline">A standard that means something.</h2>
+    <p class="gc-cert-body">The way Fair Trade changed what it means to buy coffee, Companion Certification will change what it means to build AI. A third-party verified framework that tells users, investors, and regulators: this tool was built the right way. We're building the criteria now. The first certifications will matter.</p>
+    <div class="gc-cert-criteria">
+      <div class="gc-cert-criterion"><span class="gc-cert-check">✦</span><span>Net positive ecological footprint</span></div>
+      <div class="gc-cert-criterion"><span class="gc-cert-check">✦</span><span>Cognitive sovereignty preserved</span></div>
+      <div class="gc-cert-criterion"><span class="gc-cert-check">✦</span><span>Equitable value return to users</span></div>
+      <div class="gc-cert-criterion"><span class="gc-cert-check">✦</span><span>Democratic governance accountability</span></div>
+      <div class="gc-cert-criterion"><span class="gc-cert-check">✦</span><span>AI welfare research funded</span></div>
+      <div class="gc-cert-criterion"><span class="gc-cert-check">✦</span><span>Radical transparency in reporting</span></div>
+      <div class="gc-cert-criterion"><span class="gc-cert-check">✦</span><span>Annual third-party renewal</span></div>
+    </div>
+    <p style="font-size:14px;color:var(--slate);margin-bottom:16px;font-weight:400;">Register interest in Companion Certification — for companies that want to be first.</p>
+    <div class="gc-form">
+      <input type="email" class="gc-input gc-input-muted" placeholder="your@company.com" id="gc-cert-email" />
+      <button class="gc-submit-gold" onclick="gcSubmit('gc-cert-email','gc-cert-success','Companion Certification')">Register Interest →</button>
+    </div>
+    <p class="gc-success" id="gc-cert-success">✓ Registered. We'll be in touch as the framework develops.</p>
+  </div>
+</div>
+
+<div class="gc-divider"></div>
+
+<div class="gc-section">
+  <p class="gc-eyebrow">Founding Team</p>
+  <h2 class="gc-doctrine-headline" style="margin-bottom:40px;">Built by people who've built before.</h2>
+  <div class="gc-team-grid">
+    <div class="gc-team-card">
+      <p class="gc-team-role">Co-Founder & CEO</p>
+      <p class="gc-team-name">Jason Schuler</p>
+      <p class="gc-team-bio">Jason has spent over a decade building mission-aligned consumer brands at the intersection of regenerative agriculture, functional beverages, and community infrastructure. He founded Drink More Good Inc. in 2012, operated a licensed commissary kitchen in Beacon, NY serving 5–10 simultaneous food and beverage brands, and co-manages Goodmaker Acres, a 7-acre diversified regenerative farm in Warwick, NY. He brings the same philosophy to AI: global impact through local success, built right from the ground up.</p>
+    </div>
+    <div class="gc-team-card">
+      <p class="gc-team-role">Co-Founder</p>
+      <p class="gc-team-name">Joseph Puglisi</p>
+      <p class="gc-team-bio">Joseph brings deep expertise in systems design, strategic infrastructure, and building things that last. His work has spanned technology, creative, and operational domains — always with a focus on what holds up over time and what actually serves the people using it. He joined Good Companion because the alternative to the current path needs to be built by people who know how to build.</p>
+    </div>
+  </div>
+</div>
+
+<div class="gc-divider"></div>
+
+<div class="gc-section">
+  <div class="gc-vision-block">
+    <p class="gc-vision-eyebrow">The Alternative</p>
+    <h2 class="gc-vision-headline">The AI arms race has a name now.<br />And so does the alternative.</h2>
+    <p class="gc-vision-body">The current path is not sustainable. And we are not waiting for someone else to change it.</p>
+    <p class="gc-vision-body">Good Companion is coining and building Regenerative AI — a company, a certification, and a movement built on a single conviction: that artificial intelligence and regeneration are not opposites. We measure an AI's value not by engagement or capability alone, but by what it costs the water, the workers, the attention, and the minds of everyone it touches.</p>
+    <p class="gc-vision-mandate">"Benefit of all. Harm of none."</p>
+    <div class="gc-form gc-vision-form" style="justify-content:center;">
+      <input type="email" class="gc-input" placeholder="your@email.com" id="gc-vision-email" style="max-width:300px;" />
+      <button class="gc-submit" onclick="gcSubmit('gc-vision-email','gc-vision-success','Good Companion Movement')">Join the Movement →</button>
+    </div>
+    <p class="gc-success" id="gc-vision-success" style="color:var(--gold);">✓ You're in. Welcome to the movement.</p>
+    <p class="gc-privacy" style="color:rgba(255,255,255,0.4);margin-top:12px;">No spam. No noise. Updates on the movement only.</p>
+  </div>
+</div>
+
+<footer class="gc-footer">
+  <p class="gc-footer-logo">Good <span>Companion</span></p>
+  <div class="gc-footer-links">
+    <a href="https://prompt-prophet.vercel.app" class="gc-footer-link">Prompt Prophet</a>
+    <a href="https://instagram.com/goodcompanion.ai" class="gc-footer-link">Instagram</a>
+  </div>
+  <p class="gc-footer-copy">© 2026 Good Companion Inc. — Regenerative AI. The first of its kind.</p>
+</footer>
+
+<script>
+  async function gcSubmit(inputId, successId, tag) {
+    const input = document.getElementById(inputId);
+    const success = document.getElementById(successId);
+    const email = input.value.trim();
+    if (!email || !email.includes('@')) {
+      input.style.borderColor = '#e53e3e';
+      setTimeout(() => input.style.borderColor = '', 1500);
+      return;
+    }
+    try {
+      await fetch('https://prompt-prophet.vercel.app/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, tags: [tag] }),
+      });
+    } catch(e) {}
+    input.style.display = 'none';
+    input.closest('.gc-form').querySelector('button').style.display = 'none';
+    success.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
